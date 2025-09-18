@@ -1,0 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.focus-outline:focus{outline:2px solid #3b82f6;outline-offset:2px}
+.card-image{height:180px}
