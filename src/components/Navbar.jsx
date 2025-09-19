@@ -1,24 +1,49 @@
-import React from 'react'
+import React, { useState } from "react";
 
-export default function Navbar(){
+
+export default function Navbar({ toggleSidebar }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <header className="bg-white shadow-sm">
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
-        <div className="flex items-center gap-4">
-          <div className="text-blue-600 font-bold text-xl">E-Commerce</div>
-          <nav className="hidden md:flex gap-6 text-sm text-gray-700">
-            <a href="#" className="hover:text-blue-600">HOME</a>
-            <a href="#" className="hover:text-blue-600">BAG</a>
-            <a href="#" className="hover:text-blue-600">SNEAKERS</a>
-            <a href="#" className="hover:text-blue-600">BELT</a>
-            <a href="#" className="hover:text-blue-600">CONTACT</a>
-          </nav>
-        </div>
-        <div className="flex items-center gap-4 text-sm text-gray-700">
-          <div className="hidden sm:block">Items: <strong>0</strong></div>
-          <div className="p-2 rounded focus-outline" role="button" tabIndex="0" aria-label="cart">🛒</div>
-        </div>
+    <nav className="bg-white shadow-sm sticky top-0 z-50">
+      <div className="container mx-auto flex justify-between items-center px-4 py-3">
+        {/* Logo */}
+        <h1 className="text-xl font-bold text-blue-600">E-Comm</h1>
+
+        {/* Desktop Menu */}
+        <ul className="hidden md:flex space-x-6 font-semibold">
+          <li className="text-blue-500 cursor-pointer">HOME</li>
+          <li>BAG</li>
+          <li>SNEAKERS</li>
+          <li>BELT</li>
+          <li>CONTACT</li>
+        </ul>
+
+        {/* Right Side */}
+        <div className="hidden md:block font-semibold">Items $0.00</div>
+
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden text-2xl"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          
+        </button>
       </div>
-    </header>
-  )
+
+      {/* Mobile Dropdown */}
+      {menuOpen && (
+        <ul className="md:hidden bg-white shadow-sm px-6 py-4 space-y-3 font-semibold">
+          <li className="text-blue-500">HOME</li>
+          <li>BAG</li>
+          <li>SNEAKERS</li>
+          <li>BELT</li>
+          <li>CONTACT</li>
+          <li onClick={toggleSidebar} className="cursor-pointer text-red-500">
+            Toggle Filters
+          </li>
+        </ul>
+      )}
+    </nav>
+  );
 }
